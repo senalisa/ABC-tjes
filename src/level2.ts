@@ -470,12 +470,17 @@ export class Game {
     this.levelEndButton.height = 500
     this.levelEndButton.x = 350
     this.levelEndButton.y = 100
-    //this.levelEndButton.interactive = true
-    //this.levelEndButton.on('pointerdown', () => this.gameEndScreen())
+    this.levelEndButton.interactive = true
+    this.levelEndButton.buttonMode = true
+    this.levelEndButton.on('pointerdown', () => this.toEndPage())
 
     this.pixi.stage.addChild(this.levelEndButton)
     this.goedzoSound.play()
 
+  }
+
+  toEndPage(){
+    window.location.href = "endpage.html"
   }
 
 }
