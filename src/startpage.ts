@@ -91,11 +91,16 @@ export class Game {
     startButton.scale.set(0.6, 0.6)
     startButton.x = 490
     startButton.y = 170
-    //   startButton.interactive = true
-    //   startButton.buttonMode = true
-    //   startButton.on('pointerdown', () => this.resetGame())
+      startButton.interactive = true
+      startButton.buttonMode = true
+      startButton.on('pointerdown', () => this.toLevelPage())
     this.pixi.stage.addChild(startButton)
 
+  }
+
+  toLevelPage(){
+    console.log("klik")
+    window.location.href = "levelpage.html"
   }
 
 }
