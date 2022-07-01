@@ -1,15 +1,15 @@
 //IMPORT
 import * as PIXI from "pixi.js";
 
-//IMPORT PHOTOS
 import background from "./images/forest.png"
 import levelOne from "./images/levelshow1.png"
 import levelTwo from "./images/levelshow2.png"
 import keyLock from "./images/lock.png"
 
 //IMPORT SOUND
-import levelSound from "url:./sound/startschermsound.mp3";
-import levelVoiceSound from "url:./sound/voicelevel1.mp3";
+import startschermSound from "url:./sound/startschermsound.mp3";
+import startvoiceSound from "url:./sound/voicelevel1.mp3";
+
 
 export class Levels {
 
@@ -21,8 +21,9 @@ export class Levels {
     public levelTwo: PIXI.sprite;
     public keyLock: PIXI.sprite;
 
-    public levelSound: HTMLAudioElement
-    public levelVoiceSound: HTMLAudioElement
+    public startschermSound: HTMLAudioElement
+    public startvoiceSound: HTMLAudioElement
+
 
     constructor() {
 
@@ -42,13 +43,14 @@ export class Levels {
             .add("levelTwoTexture", levelTwo)
             .add("keyLockTexture", keyLock)
 
-            .add("levelSound", levelSound)
-            .add("levelVoiceSound", levelVoiceSound)
+            .add("startschermSound", startschermSound)
+            .add("startvoiceSound", startvoiceSound)
 
         this.loader.load(() => this.loadCompleted());
 
-        //  MOUSE CURSOR 
-        document.addEventListener("mousemove", (e: MouseEvent) => this.addLevelSound(e));
+        //  MOUSE CURSOR TRACKER
+        document.addEventListener("mousemove", (e: MouseEvent) => this.mouseMoveHandler(e));
+
     }
 
     loadCompleted() {
@@ -61,14 +63,16 @@ export class Levels {
         );
         this.pixi.stage.addChild(this.background);
 
+
+
         //SOUND
-        this.levelSound = this.loader.resources["levelSound"].data!
-        this.levelSound.volume = 0.5
-        this.levelVoiceSound = this.loader.resources["levelVoiceSound"].data!
+        this.startschermSound = this.loader.resources["startschermSound"].data!
+        this.startschermSound.volume = 0.5
+        this.startvoiceSound = this.loader.resources["startvoiceSound"].data!
 
         //PLAY SOUND
-        this.levelSound.play();
-        this.levelVoiceSound.play();
+        this.startschermSound.play();
+        this.startvoiceSound.play();
 
         //LEVEL ONE
         this.levelOne = new PIXI.Sprite(this.loader.resources["levelOneTexture"].texture!)
@@ -103,19 +107,26 @@ export class Levels {
 
     }
 
+    // MOUSE CURSOR
+    mouseMoveHandler(e: MouseEvent) {
+        var relativeY = e.clientY - this.pixi.screen.top
+
+        if (relativeY > 0 && relativeY < this.pixi.screen.height) {
+            this.startschermSound.play()
+            this.startvoiceSound.play()
+
+
+        }
+    }
+
     onClick() {
         console.log("klik")
         window.location.href = "level1index.html"
     }
 
-    // MOUSE CURSOR
-    addLevelSound(e: MouseEvent) {
-        var relativeY = e.clientY - this.pixi.screen.top
-
-        if (relativeY > 0 && relativeY < this.pixi.screen.height) {
-            this.levelSound.play()
-            this.levelVoiceSound.play()
-        }
-    }
+    // onClick2() {
+    //     console.log("klik")
+    //     window.location.href = "level2index.html"
+    //}
 
 }

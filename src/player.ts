@@ -23,7 +23,7 @@ export class Player extends PIXI.Sprite {
     this.scale.set(0.60, 0.60);
 
     this.hitbox = new PIXI.Rectangle(180, 50, 90, 50)
-   
+
     let area = this.getBounds()
     let greenBox = new PIXI.Graphics()
     greenBox.drawRect(100, 50, area.width, area.height)

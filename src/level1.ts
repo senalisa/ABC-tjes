@@ -750,10 +750,18 @@ export class Game {
     this.endButton.height = 500
     this.endButton.x = 500
     this.endButton.y = 300
+    this.endButton.interactive = true;
+    this.endButton.buttonMode = true;
+    this.endButton.on('pointerdown', () => this.goToLevelPageTwo())
 
     this.endSound.play();
 
     this.pixi.stage.addChild(this.endButton)
+  }
+
+  goToLevelPageTwo() {
+    console.log("Level page two")
+    window.location.href = "levelpage2index.html"
   }
 
 
