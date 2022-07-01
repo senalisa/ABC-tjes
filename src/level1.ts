@@ -39,21 +39,17 @@ import { Hero } from "./shark";
 import { HeroTwo } from "./sharktwo";
 
 //LETTERS from TS files
-import { LetterA } from "./letterA";
-import { LetterB } from "./letterB";
-import { LetterC } from "./letterC";
-import { LetterD } from "./letterD";
-import { LetterE } from "./letterE";
-import { LetterF } from "./letterF";
-import { LetterG } from "./letterG";
-import { LetterH } from "./letterH";
+import { LetterA } from "./letters/letterA";
+import { LetterB } from "./letters/letterB";
+import { LetterC } from "./letters/letterC";
+import { LetterD } from "./letters/letterD";
+import { LetterE } from "./letters/letterE";
+import { LetterF } from "./letters/letterF";
+import { LetterG } from "./letters/letterG";
+import { LetterH } from "./letters/letterH";
 
 //BACKGROUND
 import { Background } from "./background";
-
-//BUTTONS
-import { Up } from "./buttonup"
-import { Down } from "./buttondown"
 
 //GAME CLASS
 export class Game {
@@ -127,8 +123,6 @@ export class Game {
       .add("letterHTexture", letterHImage)
       .add("gameOverImageTexture", gameOverImage)
       .add("endScreenTexture", endScreen)
-      .add("buttonUpTexture", buttonUp)
-      .add("buttonDownTexture", buttonDown)
       .add("damageSound", damageSound)
       .add("collectSound", collectSound)
       .add("endSound", endSound)
@@ -272,14 +266,6 @@ export class Game {
     this.bar.drawRect(800, 25, 200, 50);
     this.bar.endFill();
     this.pixi.stage.addChild(this.bar);
-
-    // //BUTTON UP
-    // this.up = new Up(this.loader.resources["buttonUpTexture"].texture!, this)
-    // this.pixi.stage.addChild(this.up)
-
-    // //BUTTON DOWN
-    // this.down = new Down(this.loader.resources["buttonDownTexture"].texture!, this)
-    // this.pixi.stage.addChild(this.down)
 
     //ANIMATION 
     this.pixi.ticker.add((delta: number) => this.update(delta));
