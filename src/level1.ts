@@ -7,8 +7,6 @@ import skyImage from "./images/sky3.png";
 import heroImage from "./images/superhero.png";
 import gameOverImage from "./images/gameoverimage.png";
 import endScreen from "./images/endscreen.png"
-import buttonUp from "./images/buttonup.png"
-import buttonDown from "./images/buttondown.png"
 
 //LETTERS
 import letterAImage from "./images/letterA.png"
@@ -36,7 +34,6 @@ import HSound from "url:./sound/H.mp3";
 //MC
 import { Enemy } from "./fish";
 import { Hero } from "./shark";
-import { HeroTwo } from "./sharktwo";
 
 //LETTERS from TS files
 import { LetterA } from "./letters/letterA";
@@ -59,7 +56,6 @@ export class Game {
   public fishes: Enemy[] = [];
   public loader: PIXI.Loader;
   public shark: Hero;
-  public sharkTwo: HeroTwo;
 
   public letterA: LetterA;
   public letterB: LetterB;
