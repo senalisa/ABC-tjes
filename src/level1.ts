@@ -55,41 +55,39 @@ export class Game {
   public pixi: PIXI.Application;
   public fishes: Enemy[] = [];
   public loader: PIXI.Loader;
-  public shark: Hero;
+  public shark!: Hero;
 
-  public letterA: LetterA;
-  public letterB: LetterB;
-  public letterC: LetterC;
-  public letterD: LetterD;
-  public letterE: LetterE;
-  public letterF: LetterF;
-  public letterG: LetterG;
-  public letterH: LetterH;
+  public letterA!: LetterA;
+  public letterB!: LetterB;
+  public letterC!: LetterC;
+  public letterD!: LetterD;
+  public letterE!: LetterE;
+  public letterF!: LetterF;
+  public letterG!: LetterG;
+  public letterH!: LetterH;
 
-  public background: Background;
+  public background!: Background;
 
   public score: number;
-  public scoreBoard: PIXI.Text;
-  public bgRect: PIXI.Graphics
-  public barBackground: PIXI.Graphics
-  public bar: PIXI.Graphics
-  public damageSound: HTMLAudioElement
-  public collectSound: HTMLAudioElement
-  public endSound: HTMLAudioElement
-  public up: Up;
-  public down: Down;
+  public scoreBoard!: PIXI.Text;
+  public bgRect!: PIXI.Graphics
+  public barBackground!: PIXI.Graphics
+  public bar!: PIXI.Graphics
+  public damageSound!: HTMLAudioElement
+  public collectSound!: HTMLAudioElement
+  public endSound!: HTMLAudioElement
 
-  public ASound: HTMLAudioElement
-  public BSound: HTMLAudioElement
-  public CSound: HTMLAudioElement
-  public DSound: HTMLAudioElement
-  public ESound: HTMLAudioElement
-  public FSound: HTMLAudioElement
-  public GSound: HTMLAudioElement
-  public HSound: HTMLAudioElement
+  public ASound!: HTMLAudioElement
+  public BSound!: HTMLAudioElement
+  public CSound!: HTMLAudioElement
+  public DSound!: HTMLAudioElement
+  public ESound!: HTMLAudioElement
+  public FSound!: HTMLAudioElement
+  public GSound!: HTMLAudioElement
+  public HSound!: HTMLAudioElement
 
-  public endButton: PIXI.Sprite
-  public gameOverButton: PIXI.Sprite
+  public endButton!: PIXI.Sprite
+  public gameOverButton!: PIXI.Sprite
 
 
   //CONSTRUCTOR
@@ -748,8 +746,8 @@ export class Game {
     this.endButton = new PIXI.Sprite(this.loader.resources["endScreenTexture"].texture!)
     this.endButton.width = 750
     this.endButton.height = 500
-    this.endButton.x = 500
-    this.endButton.y = 300
+    this.endButton.x = 400
+    this.endButton.y = 200
     this.endButton.interactive = true;
     this.endButton.buttonMode = true;
     this.endButton.on('pointerdown', () => this.goToLevelPageTwo())
@@ -761,7 +759,7 @@ export class Game {
 
   goToLevelPageTwo() {
     console.log("Level page two")
-    window.location.href = "levelpage2index.html"
+    window.location.href = "levelpagetwo.html"
   }
 
 
@@ -773,8 +771,8 @@ export class Game {
     this.gameOverButton = new PIXI.Sprite(this.loader.resources["gameOverImageTexture"].texture!);
     this.gameOverButton.width = 750
     this.gameOverButton.height = 500
-    this.gameOverButton.x = 500
-    this.gameOverButton.y = 300
+    this.gameOverButton.x = 400
+    this.gameOverButton.y = 200
     this.gameOverButton.interactive = true
     this.gameOverButton.buttonMode = true
     this.gameOverButton.on('pointerdown', () => this.resetGame())

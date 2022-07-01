@@ -9,20 +9,20 @@ import playerImage from "./images/player.png";
 
 //IMPORT SOUND
 import endSound from "url:./sound/startschermsound.mp3";
-import endvoiceSound from "url:./endsoundvoice.mp3";
+import endvoiceSound from "url:./sound/endsoundvoice.mp3";
 
 export class End {
 
     public pixi: PIXI.Application;
     public loader: PIXI.Loader;
 
-    public background: PIXI.Sprite;
-    public crown: PIXI.Sprite;
-    public hero: PIXI.Sprite;
+    public background!: PIXI.Sprite;
+    public crown!: PIXI.Sprite;
+    public hero!: PIXI.Sprite;
     public player!: PIXI.Sprite;
 
-    public endSound: HTMLAudioElement
-    public endvoiceSound: HTMLAudioElement
+    public endSound!: HTMLAudioElement
+    public endvoiceSound!: HTMLAudioElement
 
     constructor() {
 
@@ -60,15 +60,6 @@ export class End {
         );
         this.pixi.stage.addChild(this.background);
 
-        //SOUND
-        this.endSound = this.loader.resources["sendSound"].data!
-        this.endSound.volume = 0.5
-        this.endvoiceSound = this.loader.resources["endvoiceSound"].data!
-
-        //PLAY SOUND
-        this.endSound.play();
-        this.endvoiceSound.play();
-
         //CROWN
         this.crown = new PIXI.Sprite(this.loader.resources["crownTexture"].texture!)
         this.crown.scale.set(0.7, 0.7)
@@ -89,18 +80,16 @@ export class End {
         player.x = 250
         player.y = 450
         this.pixi.stage.addChild(player)
+
+        //SOUND
+        this.endSound = this.loader.resources["sendSound"].data!
+        this.endSound.volume = 0.5
+        this.endvoiceSound = this.loader.resources["endvoiceSound"].data!
+
+        //PLAY SOUND
+        this.endSound.play();
+        this.endvoiceSound.play();
     }
 
-    // MOUSE CURSOR
-  mouseMoveHandler(e: MouseEvent) {
-    var relativeY = e.clientY - this.pixi.screen.top
-
-    if (relativeY > 0 && relativeY < this.pixi.screen.height) {
-      this.endSound.play()
-      this.endvoiceSound.play()
-
-    }
-
-  }
 }
 

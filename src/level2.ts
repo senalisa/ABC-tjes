@@ -19,13 +19,13 @@ import levelEndScreen from "./images/levelendscreen.png"
 //IMPORT CLASSES
 import { Robot } from "./robot";
 import { Player } from "./player";
-import { LetterI } from "./letterI";
-import { LetterJ } from "./letterJ";
-import { LetterK } from "./letterK";
-import { LetterL } from "./letterL";
-import { LetterM } from "./letterM";
-import { LetterN } from "./letterN";
-import { LetterO } from "./letterO";
+import { LetterI } from "./letters/letterI";
+import { LetterJ } from "./letters/letterJ";
+import { LetterK } from "./letters/letterK";
+import { LetterL } from "./letters/letterL";
+import { LetterM } from "./letters/letterM";
+import { LetterN } from "./letters/letterN";
+import { LetterO } from "./letters/letterO";
 
 //IMPORT SOUND
 import ISound from "url:./sound/I.mp3";
@@ -45,31 +45,31 @@ export class Game {
   public robots: Robot[] = [];
   public loader: PIXI.Loader;
   public player!: Player;
-  public letterI: LetterI;
-  public letterJ: LetterJ;
-  public letterK: LetterK;
-  public letterL: LetterL;
-  public letterM: LetterM;
-  public letterN: LetterN;
-  public letterO: LetterO;
-  public displaybg: PIXI.Graphics
+  public letterI!: LetterI;
+  public letterJ!: LetterJ;
+  public letterK!: LetterK;
+  public letterL!: LetterL;
+  public letterM!: LetterM;
+  public letterN!: LetterN;
+  public letterO!: LetterO;
+  public displaybg!: PIXI.Graphics
 
-  public ISound: HTMLAudioElement
-  public JSound: HTMLAudioElement
-  public KSound: HTMLAudioElement
-  public LSound: HTMLAudioElement
-  public MSound: HTMLAudioElement
-  public NSound: HTMLAudioElement
-  public OSound: HTMLAudioElement
-  public goedzoSound: HTMLAudioElement
+  public ISound!: HTMLAudioElement
+  public JSound!: HTMLAudioElement
+  public KSound!: HTMLAudioElement
+  public LSound!: HTMLAudioElement
+  public MSound!: HTMLAudioElement
+  public NSound!: HTMLAudioElement
+  public OSound!: HTMLAudioElement
+  public goedzoSound!: HTMLAudioElement
 
   public score : number;
-  public scoreBoard : PIXI.Text;
-  public scoreText : PIXI.Text;
-  public playerHealth : PIXI.Sprite;
-  public enemyHealth : PIXI.Sprite
-  public gameOverButton : PIXI.Sprite;
-  public levelEndButton: PIXI.Sprite;
+  public scoreBoard! : PIXI.Text;
+  public scoreText! : PIXI.Text;
+  public playerHealth! : PIXI.Sprite;
+  public enemyHealth! : PIXI.Sprite
+  public gameOverButton! : PIXI.Sprite;
+  public levelEndButton!: PIXI.Sprite;
 
   //CONSTRUCTOR
   constructor() {

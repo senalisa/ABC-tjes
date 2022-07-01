@@ -22,16 +22,14 @@ export class Game {
   public pixi: PIXI.Application;
   public loader: PIXI.Loader;
   public player!: PIXI.Sprite;
-  public displaybg: PIXI.Graphics
-  public hero: PIXI.Sprite;
-  public crown: PIXI.Sprite;
+  public displaybg!: PIXI.Graphics
+  public hero!: PIXI.Sprite;
+  public crown!: PIXI.Sprite;
 
-  public speed: number;
+  public startButton!: PIXI.Sprite;
 
-  public startButton: PIXI.Sprite;
-
-  public startschermSound: HTMLAudioElement
-  public startvoiceSound: HTMLAudioElement
+  public startschermSound!: HTMLAudioElement
+  public startvoiceSound!: HTMLAudioElement
 
   //CONSTRUCTOR
   constructor() {
@@ -57,9 +55,6 @@ export class Game {
       .add("startvoiceSound", startvoiceSound)
 
     this.loader.load(() => this.loadCompleted());
-
-    //  MOUSE CURSOR TRACKER
-    document.addEventListener("mousemove", (e: MouseEvent) => this.mouseMoveHandler(e));
 
   }
 
@@ -105,14 +100,14 @@ export class Game {
     this.pixi.stage.addChild(hero)
 
     //PLAYER STARTBUTTON
-    let startButton = new PIXI.Sprite(this.loader.resources["startbuttonTexture"].texture!);
-    startButton.scale.set(0.6, 0.6)
-    startButton.x = 490
-    startButton.y = 170
-    startButton.interactive = true
-    startButton.buttonMode = true
-    startButton.on('pointerdown', () => this.toLevelPage())
-    this.pixi.stage.addChild(startButton)
+    this.startButton = new PIXI.Sprite(this.loader.resources["startbuttonTexture"].texture!);
+    this.startButton.scale.set(0.6, 0.6)
+    this.startButton.x = 490
+    this.startButton.y = 170
+    this.startButton.interactive = true
+    this.startButton.buttonMode = true
+    this.startButton.on('pointerdown', () => this.toLevelPage())
+    this.pixi.stage.addChild(this.startButton)
 
   }
 
@@ -121,15 +116,4 @@ export class Game {
     window.location.href = "levelpage.html"
   }
 
-  // MOUSE CURSOR
-  mouseMoveHandler(e: MouseEvent) {
-    var relativeY = e.clientY - this.pixi.screen.top
-
-    if (relativeY > 0 && relativeY < this.pixi.screen.height) {
-      this.startschermSound.play()
-      this.startvoiceSound.play()
-
-    }
-
-  }
 }

@@ -16,13 +16,13 @@ export class Levels {
     public pixi: PIXI.Application;
     public loader: PIXI.Loader;
 
-    public background: PIXI.Sprite;
-    public levelOne: PIXI.Sprite;
-    public levelTwo: PIXI.Sprite;
-    public keyLock: PIXI.Sprite;
+    public background!: PIXI.Sprite;
+    public levelOne!: PIXI.Sprite;
+    public levelTwo!: PIXI.Sprite;
+    public keyLock!: PIXI.Sprite;
 
-    public levelSound: HTMLAudioElement
-    public levelVoiceSound: HTMLAudioElement
+    public levelSound!: HTMLAudioElement
+    public levelVoiceSound!: HTMLAudioElement
 
     constructor() {
 
@@ -70,16 +70,6 @@ export class Levels {
         this.levelSound.play();
         this.levelVoiceSound.play();
 
-        //LEVEL ONE
-        this.levelOne = new PIXI.Sprite(this.loader.resources["levelOneTexture"].texture!)
-        this.levelOne.scale.set(0.7, 0.7)
-        this.levelOne.x = 50
-        this.levelOne.y = 100
-        this.levelOne.interactive = true
-        this.levelOne.buttonMode = true
-        this.levelOne.on('pointerdown', () => this.onClick())
-
-        this.pixi.stage.addChild(this.levelOne);
 
         //LEVEL TWO
         this.levelTwo = new PIXI.Sprite(this.loader.resources["levelTwoTexture"].texture!)
@@ -101,11 +91,23 @@ export class Levels {
 
         this.pixi.stage.addChild(this.keyLock);
 
+        //LEVEL ONE
+        this.levelOne = new PIXI.Sprite(this.loader.resources["levelOneTexture"].texture!)
+        this.levelOne.scale.set(0.7, 0.7)
+        this.levelOne.x = 50
+        this.levelOne.y = 100
+        this.levelOne.interactive = true
+        this.levelOne.buttonMode = true
+        this.levelOne.on('pointerdown', () => this.onClick())
+
+        this.pixi.stage.addChild(this.levelOne);
+
+
     }
 
     onClick() {
         console.log("klik")
-        window.location.href = "level1index.html"
+        window.location.href = "level1.html"
     }
 
     // MOUSE CURSOR

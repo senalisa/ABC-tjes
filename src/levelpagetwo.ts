@@ -15,12 +15,12 @@ export class Levels {
     public pixi: PIXI.Application;
     public loader: PIXI.Loader;
 
-    public background: PIXI.Sprite;
-    public levelOne: PIXI.Sprite;
-    public levelTwo: PIXI.Sprite;
+    public background!: PIXI.Sprite;
+    public levelOne!: PIXI.Sprite;
+    public levelTwo!: PIXI.Sprite;
 
-    public LevelSound: HTMLAudioElement
-    public LevelvoiceSound2: HTMLAudioElement
+    public LevelSound!: HTMLAudioElement
+    public LevelvoiceSound2!: HTMLAudioElement
 
 
     constructor() {
