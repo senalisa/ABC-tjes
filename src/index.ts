@@ -1,4 +1,4 @@
 import "./styles.css";
-import { Game } from "./game";
+import { Game } from "./level1";
 
 new Game();
