@@ -4,11 +4,10 @@ import * as PIXI from "pixi.js";
 import background from "./images/forest.png"
 import levelOne from "./images/levelshow1.png"
 import levelTwo from "./images/levelshow2.png"
-import keyLock from "./images/lock.png"
 
 //IMPORT SOUND
-import startschermSound from "url:./sound/startschermsound.mp3";
-import startvoiceSound from "url:./sound/voicelevel1.mp3";
+import LevelSound from "url:./sound/startschermsound.mp3";
+import LevelvoiceSound2 from "url:./sound/voicelevel2.mp3";
 
 
 export class Levels {
@@ -18,11 +17,10 @@ export class Levels {
 
     public background: PIXI.Sprite;
     public levelOne: PIXI.Sprite;
-    public levelTwo: PIXI.sprite;
-    public keyLock: PIXI.sprite;
+    public levelTwo: PIXI.Sprite;
 
-    public startschermSound: HTMLAudioElement
-    public startvoiceSound: HTMLAudioElement
+    public LevelSound: HTMLAudioElement
+    public LevelvoiceSound2: HTMLAudioElement
 
 
     constructor() {
@@ -41,10 +39,9 @@ export class Levels {
             .add("bgTexture", background)
             .add("levelOneTexture", levelOne)
             .add("levelTwoTexture", levelTwo)
-            .add("keyLockTexture", keyLock)
 
-            .add("startschermSound", startschermSound)
-            .add("startvoiceSound", startvoiceSound)
+            .add("LevelSound", LevelSound)
+            .add("LevelvoiceSound2", LevelvoiceSound2)
 
         this.loader.load(() => this.loadCompleted());
 
@@ -66,22 +63,22 @@ export class Levels {
 
 
         //SOUND
-        this.startschermSound = this.loader.resources["startschermSound"].data!
-        this.startschermSound.volume = 0.5
-        this.startvoiceSound = this.loader.resources["startvoiceSound"].data!
+        this.LevelSound = this.loader.resources["LevelSound"].data!
+        this.LevelSound.volume = 0.5
+        this.LevelvoiceSound2 = this.loader.resources["LevelvoiceSound2"].data!
 
         //PLAY SOUND
-        this.startschermSound.play();
-        this.startvoiceSound.play();
+        this.LevelSound.play();
+        this.LevelvoiceSound2.play();
 
         //LEVEL ONE
         this.levelOne = new PIXI.Sprite(this.loader.resources["levelOneTexture"].texture!)
         this.levelOne.scale.set(0.7, 0.7)
         this.levelOne.x = 50
         this.levelOne.y = 100
-        this.levelOne.interactive = true
-        this.levelOne.buttonMode = true
-        this.levelOne.on('pointerdown', () => this.onClick())
+        //this.levelOne.interactive = true
+        //this.levelOne.buttonMode = true
+        //this.levelOne.on('pointerdown', () => this.onClick())
 
         this.pixi.stage.addChild(this.levelOne);
 
@@ -90,20 +87,12 @@ export class Levels {
         this.levelTwo.scale.set(0.7, 0.7)
         this.levelTwo.x = 760
         this.levelTwo.y = 100
-        // this.levelTwo.interactive = true
-        // this.levelTwo.buttonMode = true
-        // this.levelTwo.on('pointerdown', () => this.onClick2())
+        this.levelTwo.interactive = true
+        this.levelTwo.buttonMode = true
+        this.levelTwo.on('pointerdown', () => this.onClick2())
 
         this.pixi.stage.addChild(this.levelTwo);
 
-        //LEVEL TWO LOCK
-        this.keyLock = new PIXI.Sprite(this.loader.resources["keyLockTexture"].texture!)
-        this.keyLock.scale.set(0.4, 0.4)
-        this.keyLock.x = 1030
-        this.keyLock.y = 340
-
-
-        this.pixi.stage.addChild(this.keyLock);
 
     }
 
@@ -112,21 +101,21 @@ export class Levels {
         var relativeY = e.clientY - this.pixi.screen.top
 
         if (relativeY > 0 && relativeY < this.pixi.screen.height) {
-            this.startschermSound.play()
-            this.startvoiceSound.play()
+            this.LevelSound.play()
+            this.LevelvoiceSound2.play()
 
 
         }
     }
 
-    onClick() {
-        console.log("klik")
-        window.location.href = "level1index.html"
-    }
-
-    // onClick2() {
+    // onClick() {
     //     console.log("klik")
-    //     window.location.href = "level2index.html"
-    //}
+    //     window.location.href = "level1index.html"
+    // }
+
+    onClick2() {
+        console.log("klik")
+        window.location.href = "level2index.html"
+    }
 
 }
