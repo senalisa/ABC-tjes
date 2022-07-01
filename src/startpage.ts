@@ -109,27 +109,28 @@ export class Game {
     startButton.scale.set(0.6, 0.6)
     startButton.x = 490
     startButton.y = 170
-      startButton.interactive = true
-      startButton.buttonMode = true
-      startButton.on('pointerdown', () => this.toLevelPage())
+    startButton.interactive = true
+    startButton.buttonMode = true
+    startButton.on('pointerdown', () => this.toLevelPage())
     this.pixi.stage.addChild(startButton)
 
   }
 
-  toLevelPage(){
+  toLevelPage() {
     console.log("klik")
     window.location.href = "levelpage.html"
   }
 
-      // MOUSE CURSOR
-      mouseMoveHandler(e: MouseEvent) {
-        var relativeY = e.clientY - this.pixi.screen.top
-    
-        if (relativeY > 0 && relativeY < this.pixi.screen.height) {
-          this.startschermSound.play()
-          this.startvoiceSound.play()
-    
-          
-        }
+  // MOUSE CURSOR
+  mouseMoveHandler(e: MouseEvent) {
+    var relativeY = e.clientY - this.pixi.screen.top
 
+    if (relativeY > 0 && relativeY < this.pixi.screen.height) {
+      this.startschermSound.play()
+      this.startvoiceSound.play()
+
+
+    }
+
+  }
 }

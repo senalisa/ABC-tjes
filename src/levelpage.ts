@@ -1,8 +1,13 @@
 //IMPORT
 import * as PIXI from "pixi.js";
 
+//IMPORT PHOTOS
 import background from "./images/forest.png"
 import levelOne from "./images/levelshow1.png"
+
+//IMPORT SOUND
+import levelSound from "url:./sound/startschermsound.mp3";
+import levelVoiceSound from "url:./sound/voicelevel1.mp3";
 
 export class Levels {
 
@@ -11,6 +16,9 @@ export class Levels {
 
     public background: PIXI.Sprite;
     public levelOne: PIXI.Sprite;
+
+    public levelSound: HTMLAudioElement
+    public levelVoiceSound: HTMLAudioElement
 
     constructor() {
 
@@ -27,9 +35,13 @@ export class Levels {
         this.loader
             .add("bgTexture", background)
             .add("levelOneTexture", levelOne)
+            .add("levelSound", levelSound)
+            .add("levelVoiceSound", levelVoiceSound)
 
         this.loader.load(() => this.loadCompleted());
 
+        //  MOUSE CURSOR 
+        document.addEventListener("mousemove", (e: MouseEvent) => this.addLevelSound(e));
     }
 
     loadCompleted() {
@@ -41,6 +53,15 @@ export class Levels {
             window.innerHeight / this.background.getBounds().height
         );
         this.pixi.stage.addChild(this.background);
+
+        //SOUND
+        this.levelSound = this.loader.resources["levelSound"].data!
+        this.levelSound.volume = 0.5
+        this.levelVoiceSound = this.loader.resources["levelVoiceSound"].data!
+
+        //PLAY SOUND
+        this.levelSound.play();
+        this.levelVoiceSound.play();
 
         //LEVEL ONE
         this.levelOne = new PIXI.Sprite(this.loader.resources["levelOneTexture"].texture!)
@@ -58,6 +79,16 @@ export class Levels {
     onClick() {
         console.log("klik")
         window.location.href = "level1index.html"
+    }
+
+    // MOUSE CURSOR
+    addLevelSound(e: MouseEvent) {
+        var relativeY = e.clientY - this.pixi.screen.top
+
+        if (relativeY > 0 && relativeY < this.pixi.screen.height) {
+            this.levelSound.play()
+            this.levelVoiceSound.play()
+        }
     }
 
 }
