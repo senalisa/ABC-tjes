@@ -4,6 +4,8 @@ import * as PIXI from "pixi.js";
 //IMPORT PHOTOS
 import background from "./images/forest.png"
 import levelOne from "./images/levelshow1.png"
+import levelTwo from "./images/levelshow2.png"
+import keyLock from "./images/lock.png"
 
 //IMPORT SOUND
 import levelSound from "url:./sound/startschermsound.mp3";
@@ -16,6 +18,8 @@ export class Levels {
 
     public background: PIXI.Sprite;
     public levelOne: PIXI.Sprite;
+    public levelTwo: PIXI.sprite;
+    public keyLock: PIXI.sprite;
 
     public levelSound: HTMLAudioElement
     public levelVoiceSound: HTMLAudioElement
@@ -35,6 +39,9 @@ export class Levels {
         this.loader
             .add("bgTexture", background)
             .add("levelOneTexture", levelOne)
+            .add("levelTwoTexture", levelTwo)
+            .add("keyLockTexture", keyLock)
+
             .add("levelSound", levelSound)
             .add("levelVoiceSound", levelVoiceSound)
 
@@ -73,6 +80,26 @@ export class Levels {
         this.levelOne.on('pointerdown', () => this.onClick())
 
         this.pixi.stage.addChild(this.levelOne);
+
+         //LEVEL TWO
+         this.levelTwo = new PIXI.Sprite(this.loader.resources["levelTwoTexture"].texture!)
+         this.levelTwo.scale.set(0.7, 0.7)
+         this.levelTwo.x = 760
+         this.levelTwo.y = 100
+         // this.levelTwo.interactive = true
+         // this.levelTwo.buttonMode = true
+         // this.levelTwo.on('pointerdown', () => this.onClick2())
+ 
+         this.pixi.stage.addChild(this.levelTwo);
+ 
+          //LEVEL TWO LOCK
+          this.keyLock = new PIXI.Sprite(this.loader.resources["keyLockTexture"].texture!)
+          this.keyLock.scale.set(0.4, 0.4)
+          this.keyLock.x = 1030
+          this.keyLock.y = 340
+          
+  
+          this.pixi.stage.addChild(this.keyLock);
 
     }
 
