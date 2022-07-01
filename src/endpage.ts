@@ -5,6 +5,11 @@ import * as PIXI from "pixi.js";
 import background from "./images/endpage.jpg"
 import crown from "./images/crown.png"
 import hero from "./images/superhero.png"
+import playerImage from "./images/player.png";
+
+//IMPORT SOUND
+import endSound from "url:./sound/startschermsound.mp3";
+import endvoiceSound from "url:./endsoundvoice.mp3";
 
 export class End {
 
@@ -14,6 +19,10 @@ export class End {
     public background: PIXI.Sprite;
     public crown: PIXI.Sprite;
     public hero: PIXI.Sprite;
+    public player!: PIXI.Sprite;
+
+    public endSound: HTMLAudioElement
+    public endvoiceSound: HTMLAudioElement
 
     constructor() {
 
@@ -31,8 +40,14 @@ export class End {
             .add("bgTexture", background)
             .add("crownTexture", crown)
             .add("heroTexture", hero)
+            .add("playerTexture", playerImage)
+
+            .add("endSound", endSound)
+            .add("endvoiceSound", endvoiceSound)
 
         this.loader.load(() => this.loadCompleted());
+
+        
     }
 
     loadCompleted() {
@@ -45,19 +60,47 @@ export class End {
         );
         this.pixi.stage.addChild(this.background);
 
-        //LEVEL ONE
+        //SOUND
+        this.endSound = this.loader.resources["sendSound"].data!
+        this.endSound.volume = 0.5
+        this.endvoiceSound = this.loader.resources["endvoiceSound"].data!
+
+        //PLAY SOUND
+        this.endSound.play();
+        this.endvoiceSound.play();
+
+        //CROWN
         this.crown = new PIXI.Sprite(this.loader.resources["crownTexture"].texture!)
         this.crown.scale.set(0.7, 0.7)
         this.crown.x = 50
         this.crown.y = 100
         this.pixi.stage.addChild(this.crown);
 
-        //LEVEL TWO
+        //POPPETJE SENA
         this.hero = new PIXI.Sprite(this.loader.resources["levelTwoTexture"].texture!)
         this.hero.scale.set(0.7, 0.7)
         this.hero.x = 760
         this.hero.y = 100
         this.pixi.stage.addChild(this.hero);
+
+        //POPPETJE RAIESA
+        let player = new PIXI.Sprite(this.loader.resources["playerTexture"].texture!);
+        player.scale.set(0.6, 0.6)
+        player.x = 250
+        player.y = 450
+        this.pixi.stage.addChild(player)
     }
+
+    // MOUSE CURSOR
+  mouseMoveHandler(e: MouseEvent) {
+    var relativeY = e.clientY - this.pixi.screen.top
+
+    if (relativeY > 0 && relativeY < this.pixi.screen.height) {
+      this.endSound.play()
+      this.endvoiceSound.play()
+
+    }
+
+  }
 }
 

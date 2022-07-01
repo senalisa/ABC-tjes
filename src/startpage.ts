@@ -129,7 +129,6 @@ export class Game {
       this.startschermSound.play()
       this.startvoiceSound.play()
 
-
     }
 
   }
